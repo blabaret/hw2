@@ -84,7 +84,7 @@ new_studio = Studio.new
 new_studio["studio"] = "Warner Bros."
 new_studio.save
 
-studioid = Studio.find_by("studio" => "Warner Bros.")
+studioid = Studio.find_by({"studio" => "Warner Bros."})
 
 new_movie = Movie.new
 new_movie["title"] = "Batman Begins"
@@ -161,21 +161,21 @@ new_cast.save
 
 puts "There are #{Cast.count} actors"
 
-bwayneid = Cast.find_by("actor" => "Christian Bale")
-alfredid = Cast.find_by("actor" => "Michael Caine")
-rasid = Cast.find_by("actor" => "Liam Neeson")
-rachelid = Cast.find_by("actor" => "Katie Holmes")
-jokerid = Cast.find_by("actor" => "Heath Ledger")
-twofaceid = Cast.find_by("actor" => "Aaron Eckhart")
-maggieid = Cast.find_by("actor" => "Maggie Gyllenhaal")
-baneid = Cast.find_by("actor" => "Tom Hardy")
-josephid = Cast.find_by("actor" => "Joseph Gordon Levitt")
-anneid = Cast.find_by("actor" => "Anne Hathaway")
-gordonid = Cast.find_by("actor" => "Gary Oldman")
+bwayneid = Cast.find_by({"actor" => "Christian Bale"})
+alfredid = Cast.find_by({"actor" => "Michael Caine"})
+rasid = Cast.find_by({"actor" => "Liam Neeson"})
+rachelid = Cast.find_by({"actor" => "Katie Holmes"})
+jokerid = Cast.find_by({"actor" => "Heath Ledger"})
+twofaceid = Cast.find_by({"actor" => "Aaron Eckhart"})
+maggieid = Cast.find_by({"actor" => "Maggie Gyllenhaal"})
+baneid = Cast.find_by({"actor" => "Tom Hardy"})
+josephid = Cast.find_by({"actor" => "Joseph Gordon Levitt"})
+anneid = Cast.find_by({"actor" => "Anne Hathaway"})
+gordonid = Cast.find_by({"actor" => "Gary Oldman"})
 
-moviebb = Movie.find_by("title" => "Batman Begins")
-moviedk = Movie.find_by("title" => "The Dark Knight")
-moviedkr = Movie.find_by("title" => "The Dark Knight Rises")
+moviebb = Movie.find_by({"title" => "Batman Begins"})
+moviedk = Movie.find_by({"title" => "The Dark Knight"})
+moviedkr = Movie.find_by({"title" => "The Dark Knight Rises"})
 
 #BB Chars
 
@@ -287,8 +287,21 @@ puts "Movies"
 puts "======"
 puts ""
 
+
 # Query the movies data and loop through the results to display the movies output.
 # TODO!
+
+warner = Studio.find_by({ "studio" => "Warner Bros." })
+
+moviez = Movie.where({ "studio_id" => warner["id"] })
+
+for movies in moviez
+    title = movies["title"]
+    year = movies["year"]
+    rating = movies["rating"]
+    studio = warner["studio"]
+    puts "#{title} #{year} #{rating} #{studio}"
+end
 
 # Prints a header for the cast output
 puts ""
@@ -298,3 +311,13 @@ puts ""
 
 # Query the cast data and loop through the results to display the cast output for each movie.
 # TODO!
+
+charbb = Role.where({"movie_id" => moviebb["id"]})
+actorbb = Cast.where({"id" => charbb["actor_id"]})
+
+for cast in charbb
+    title = moviebb["title"]
+    actorm = actorbb["actor"]
+    charm = charbb["character"]
+    puts "#{title} #{actorm} #{charm}"
+end
