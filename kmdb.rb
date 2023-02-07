@@ -71,8 +71,62 @@
 # Use `Model.destroy_all` code.
 # TODO!
 
+Movies.destroy_all
+Cast.destroy_all
+Studios.destroy_all
+Roles.destroy_all
+
 # Generate models and tables, according to the domain model.
 # TODO!
+
+
+new_movie = Movies.new
+new_movie["title"] = "Batman Begins"
+new_movie["year"] = "2005"
+new_movie["rating"] = "PG-13"
+new_movie["studio_id"] = "https://apple.com"
+
+new_movie = Movies.new
+new_movie["title"] = "The Dark Knight"
+new_movie["year"] = "2008"
+new_movie["rating"] = "PG-13"
+new_movie["studio_id"] = "https://apple.com"
+
+new_movie = Movies.new
+new_movie["title"] = "The Dark Knight Rises"
+new_movie["year"] = "2012"
+new_movie["rating"] = "PG-13"
+new_movie["studio_id"] = "https://apple.com"
+
+puts "There are #{Movies.count} movies"
+
+new_cast = Casts.new
+new_cast["role_id"] = "Batman Begins"
+new_cast["movie_id"] = "2005"
+new_cast["actor"] = "Christian Bale"
+
+new_cast = Casts.new
+new_cast["role_id"] = "Batman Begins"
+new_cast["movie_id"] = "2005"
+new_cast["actor"] = "Michael Caine"
+
+new_cast = Casts.new
+new_cast["role_id"] = "Batman Begins"
+new_cast["movie_id"] = "2005"
+new_cast["actor"] = "Liam Neeson"
+
+new_cast = Casts.new
+new_cast["role_id"] = "Batman Begins"
+new_cast["movie_id"] = "2005"
+new_cast["actor"] = "Katie Holmes"
+
+new_cast = Casts.new
+new_cast["role_id"] = "Batman Begins"
+new_cast["movie_id"] = "2005"
+new_cast["actor"] = "Gary Oldman"
+
+puts "There are #{Casts.count} cast members"
+
 
 # Insert data into the database that reflects the sample data shown above.
 # Do not use hard-coded foreign key IDs.
