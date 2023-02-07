@@ -319,6 +319,8 @@ for mov in moviez
         for actor in chars
             fullnames = Cast.find_by({"id" => actor["actor_id"]})
             movienames = Movie.find_by({"id" => actor["movie_id"]})
+            puts "#{movienames} #{fullnames} #{chars}"
         end
-        puts "#{movienames} #{fullnames} #{chars}"
+        
     end
+    
