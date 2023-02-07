@@ -312,12 +312,13 @@ puts ""
 # Query the cast data and loop through the results to display the cast output for each movie.
 # TODO!
 
-charbb = Role.where({"movie_id" => moviebb["id"]})
-actorbb = Cast.where({"id" => charbb["actor_id"]})
+#moviez = Movie.where({ "studio_id" => warner["id"] })
 
-for cast in charbb
-    title = moviebb["title"]
-    actorm = actorbb["actor"]
-    charm = charbb["character"]
-    puts "#{title} #{actorm} #{charm}"
-end
+for mov in moviez
+    chars = Role.where({"movie_id" => mov["id"]})
+        for actor in chars
+            fullnames = Cast.find_by({"id" => actor["actor_id"]})
+            movienames = Movie.find_by({"id" => actor["movie_id"]})
+        end
+        puts "#{movienames} #{fullnames} #{chars}"
+    end
