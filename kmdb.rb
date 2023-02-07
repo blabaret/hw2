@@ -71,61 +71,211 @@
 # Use `Model.destroy_all` code.
 # TODO!
 
-Movies.destroy_all
+Movie.destroy_all
 Cast.destroy_all
-Studios.destroy_all
-Roles.destroy_all
+Studio.destroy_all
+Role.destroy_all
 
 # Generate models and tables, according to the domain model.
 # TODO!
 
 
-new_movie = Movies.new
+new_studio = Studio.new
+new_studio["studio"] = "Warner Bros."
+new_studio.save
+
+studioid = Studio.find_by("studio" => "Warner Bros.")
+
+new_movie = Movie.new
 new_movie["title"] = "Batman Begins"
 new_movie["year"] = "2005"
 new_movie["rating"] = "PG-13"
-new_movie["studio_id"] = "https://apple.com"
+new_movie["studio_id"] = studioid["id"]
+new_movie.save
 
-new_movie = Movies.new
+new_movie = Movie.new
 new_movie["title"] = "The Dark Knight"
 new_movie["year"] = "2008"
 new_movie["rating"] = "PG-13"
-new_movie["studio_id"] = "https://apple.com"
+new_movie["studio_id"] = studioid["id"]
+new_movie.save
 
-new_movie = Movies.new
+new_movie = Movie.new
 new_movie["title"] = "The Dark Knight Rises"
 new_movie["year"] = "2012"
 new_movie["rating"] = "PG-13"
-new_movie["studio_id"] = "https://apple.com"
+new_movie["studio_id"] = studioid["id"]
+new_movie.save
 
-puts "There are #{Movies.count} movies"
+puts "There are #{Movie.count} movies"
 
-new_cast = Casts.new
-new_cast["role_id"] = "Batman Begins"
-new_cast["movie_id"] = "2005"
+#BB Cast
+
+new_cast = Cast.new
 new_cast["actor"] = "Christian Bale"
+new_cast.save
 
-new_cast = Casts.new
-new_cast["role_id"] = "Batman Begins"
-new_cast["movie_id"] = "2005"
+new_cast = Cast.new
 new_cast["actor"] = "Michael Caine"
+new_cast.save
 
-new_cast = Casts.new
-new_cast["role_id"] = "Batman Begins"
-new_cast["movie_id"] = "2005"
+new_cast = Cast.new
 new_cast["actor"] = "Liam Neeson"
+new_cast.save
 
-new_cast = Casts.new
-new_cast["role_id"] = "Batman Begins"
-new_cast["movie_id"] = "2005"
+new_cast = Cast.new
 new_cast["actor"] = "Katie Holmes"
+new_cast.save
 
-new_cast = Casts.new
-new_cast["role_id"] = "Batman Begins"
-new_cast["movie_id"] = "2005"
+new_cast = Cast.new
 new_cast["actor"] = "Gary Oldman"
+new_cast.save
 
-puts "There are #{Casts.count} cast members"
+#DK Cast
+
+new_cast = Cast.new
+new_cast["actor"] = "Heath Ledger"
+new_cast.save
+
+new_cast = Cast.new
+new_cast["actor"] = "Aaron Eckhart"
+new_cast.save
+
+new_cast = Cast.new
+new_cast["actor"] = "Maggie Gyllenhaal"
+new_cast.save
+
+#DKR Cast
+
+new_cast = Cast.new
+new_cast["actor"] = "Tom Hardy"
+new_cast.save
+
+new_cast = Cast.new
+new_cast["actor"] = "Joseph Gordon Levitt"
+new_cast.save
+
+new_cast = Cast.new
+new_cast["actor"] = "Anne Hathaway"
+new_cast.save
+
+puts "There are #{Cast.count} actors"
+
+bwayneid = Cast.find_by("actor" => "Christian Bale")
+alfredid = Cast.find_by("actor" => "Michael Caine")
+rasid = Cast.find_by("actor" => "Liam Neeson")
+rachelid = Cast.find_by("actor" => "Katie Holmes")
+jokerid = Cast.find_by("actor" => "Heath Ledger")
+twofaceid = Cast.find_by("actor" => "Aaron Eckhart")
+maggieid = Cast.find_by("actor" => "Maggie Gyllenhaal")
+baneid = Cast.find_by("actor" => "Tom Hardy")
+josephid = Cast.find_by("actor" => "Joseph Gordon Levitt")
+anneid = Cast.find_by("actor" => "Anne Hathaway")
+gordonid = Cast.find_by("actor" => "Gary Oldman")
+
+moviebb = Movie.find_by("title" => "Batman Begins")
+moviedk = Movie.find_by("title" => "The Dark Knight")
+moviedkr = Movie.find_by("title" => "The Dark Knight Rises")
+
+#BB Chars
+
+new_character = Role.new
+new_character["character"] = "Bruce Wayne"
+new_character["movie_id"] = moviebb["id"]
+new_character["actor_id"] = bwayneid["id"]
+new_character.save
+
+new_character = Role.new
+new_character["character"] = "Alfred"
+new_character["movie_id"] = moviebb["id"]
+new_character["actor_id"] = alfredid["id"]
+new_character.save
+
+new_character = Role.new
+new_character["character"] = "Ra's Al Ghul"
+new_character["movie_id"] = moviebb["id"]
+new_character["actor_id"] = rasid["id"]
+new_character.save
+
+new_character = Role.new
+new_character["character"] = "Rachel Dawes"
+new_character["movie_id"] = moviebb["id"]
+new_character["actor_id"] = rachelid["id"]
+new_character.save
+
+new_character = Role.new
+new_character["character"] = "Commissioner Gordon"
+new_character["movie_id"] = moviebb["id"]
+new_character["actor_id"] = gordonid["id"]
+new_character.save
+
+#DK Chars
+
+new_character = Role.new
+new_character["character"] = "Bruce Wayne"
+new_character["movie_id"] = moviedk["id"]
+new_character["actor_id"] = bwayneid["id"]
+new_character.save
+
+new_character = Role.new
+new_character["character"] = "Joker"
+new_character["movie_id"] = moviedk["id"]
+new_character["actor_id"] = jokerid["id"]
+new_character.save
+
+new_character = Role.new
+new_character["character"] = "Harvey Dent"
+new_character["movie_id"] = moviedk["id"]
+new_character["actor_id"] = twofaceid["id"]
+new_character.save
+
+new_character = Role.new
+new_character["character"] = "Alfred"
+new_character["movie_id"] = moviedk["id"]
+new_character["actor_id"] = alfredid["id"]
+new_character.save
+
+new_character = Role.new
+new_character["character"] = "Rachel Dawes"
+new_character["movie_id"] = moviedk["id"]
+new_character["actor_id"] = maggieid["id"]
+new_character.save
+
+#DKR Chars
+
+new_character = Role.new
+new_character["character"] = "Bruce Wayne"
+new_character["movie_id"] = moviedkr["id"]
+new_character["actor_id"] = bwayneid["id"]
+new_character.save
+
+new_character = Role.new
+new_character["character"] = "Commissioner Gordon"
+new_character["movie_id"] = moviedkr["id"]
+new_character["actor_id"] = gordonid["id"]
+new_character.save
+
+new_character = Role.new
+new_character["character"] = "Tom Hardy"
+new_character["movie_id"] = moviedkr["id"]
+new_character["actor_id"] = baneid["id"]
+new_character.save
+
+new_character = Role.new
+new_character["character"] = "John Blake"
+new_character["movie_id"] = moviedkr["id"]
+new_character["actor_id"] = josephid["id"]
+new_character.save
+
+new_character = Role.new
+new_character["character"] = "Selina Kyle"
+new_character["movie_id"] = moviedkr["id"]
+new_character["actor_id"] = anneid["id"]
+new_character.save
+
+new_character.save
+
+puts "There are #{Role.count} characters"
 
 
 # Insert data into the database that reflects the sample data shown above.
